@@ -5,11 +5,11 @@ Python syntax validation logic
 import subprocess
 import sys
 from pathlib import Path
-from typing import List, Tuple
+from typing import List
 
 
 class PythonValidator:
-    """Validates Python syntax using py_compile and flake8"""
+    """Validates Python syntax using py_compile"""
     
     def __init__(self):
         self.errors = []
@@ -29,38 +29,23 @@ class PythonValidator:
             if not self._check_syntax(file):
                 all_passed = False
                 
-            # Optional: Additional style checks
-            if not self._check_flake8(file):
-                all_passed = False
-                
         return all_passed
     
     def _check_syntax(self, file: Path) -> bool:
         """Check Python syntax using py_compile"""
         try:
             # Python's built-in syntax checker
-            subprocess.run(
+            result = subprocess.run(
                 [sys.executable, "-m", "py_compile", str(file)],
-                check=True,
                 capture_output=True,
-                text=True
+                text=True,
+                check=False
             )
+            if result.returncode != 0:
+                print(f"❌ Syntax error in {file}:")
+                print(result.stderr)
+                return False
             return True
-        except subprocess.CalledProcessError as e:
-            print(f"❌ Syntax error in {file}:")
-            print(e.stderr)
+        except Exception as e:
+            print(f"❌ Error checking {file}: {e}")
             return False
-    
-    def _check_flake8(self, file: Path) -> bool:
-        """Optional: run flake8 for style checking"""
-        try:
-            subprocess.run(
-                ["flake8", str(file)],
-                check=False,
-                capture_output=True,
-                text=True
-            )
-            return True
-        except FileNotFoundError:
-            # flake8 not installed, skip check
-            return True

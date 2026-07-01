@@ -6,10 +6,11 @@ Main entry point for Python syntax validation
 import sys
 import argparse
 from pathlib import Path
-from validators.python_syntax import PythonValidator
+from src.validators.python_syntax import PythonValidator
 
 
 def main():
+    """Main function for CLI entry point"""
     parser = argparse.ArgumentParser(
         description="Python syntax validator for pre-commit hooks"
     )
