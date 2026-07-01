@@ -3,7 +3,6 @@ Integration tests for the pre-commit hook
 """
 
 import subprocess
-import pytest
 from pathlib import Path
 
 

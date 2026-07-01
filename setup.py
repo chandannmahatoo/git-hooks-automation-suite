@@ -2,8 +2,27 @@
 Setup configuration for Git Hooks Automation Suite
 """
 
-from setuptools import setup, find_packages
+import fnmatch
+import os
 from pathlib import Path
+
+try:
+    from setuptools import setup, find_packages
+except ImportError:
+    from distutils.core import setup
+
+    def find_packages(where=".", exclude=()):
+        root_dir = Path(__file__).parent / where
+        packages = []
+        for root, dirs, files in os.walk(root_dir):
+            if "__init__.py" in files:
+                package = Path(root).relative_to(root_dir).as_posix().replace("/", ".")
+                if package == ".":
+                    continue
+                if any(fnmatch.fnmatchcase(package, pattern) for pattern in exclude):
+                    continue
+                packages.append(package)
+        return packages
 
 # Read the contents of README.md
 readme_file = Path(__file__).parent / "README.md"
