@@ -18,6 +18,7 @@ This project implements a Git pre-commit hook that validates Python syntax befor
 - 🔄 Automate routine validation without manual intervention
 
 ## 📋 Table of Contents
+- [Overview](#overview)
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Architecture](#architecture)
