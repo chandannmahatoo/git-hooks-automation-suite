@@ -1,0 +1,53 @@
+# ============================================
+# Git Hooks Automation Suite
+# Python syntax validation with pre-commit hooks
+# ============================================
+
+# --------------------------------------------
+# Core Dependencies (Required for the hook to work)
+# --------------------------------------------
+# Python 3.8+ is required (not listed as it's the runtime)
+# No external dependencies needed for the hook itself!
+
+# --------------------------------------------
+# Development Dependencies
+# --------------------------------------------
+# For developers working on this project
+
+# Pre-commit framework (recommended for managing hooks)
+pre-commit>=3.0.0,<4.0.0
+
+# Testing
+pytest>=7.0.0,<8.0.0
+pytest-cov>=4.0.0,<5.0.0
+pytest-xdist>=3.0.0,<4.0.0  # Parallel test execution
+
+# Code Quality & Formatting
+black>=23.0.0,<24.0.0
+isort>=5.12.0,<6.0.0
+flake8>=6.0.0,<7.0.0
+flake8-docstrings>=1.7.0,<2.0.0
+flake8-bugbear>=23.0.0,<24.0.0
+
+# Type Checking (optional)
+mypy>=1.0.0,<2.0.0
+types-all>=1.0.0  # Type stubs for all packages
+
+# Package Building & Publishing
+build>=0.10.0,<1.0.0
+twine>=4.0.0,<5.0.0
+wheel>=0.40.0,<1.0.0
+
+# --------------------------------------------
+# Optional Dependencies
+# --------------------------------------------
+
+# Security scanning (optional)
+# detect-secrets>=1.4.0,<2.0.0
+
+# Commit message validation (optional)
+# commitizen>=3.0.0,<4.0.0
+
+# Documentation generation (optional)
+# mkdocs>=1.5.0,<2.0.0
+# mkdocs-material>=9.0.0,<10.0.0
